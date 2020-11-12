@@ -8,13 +8,12 @@
     />
     <button @click="reset">重置</button>
     <button @click="clear">清除</button>
-    <button @click="getResult">预览</button>
+    <button @click="getResult">裁剪</button>
   </section>
 
   <section class="section">
     <h2>裁剪区</h2>
-    <tsxCropper
-      ref="cropperPlugin"
+    <ImageCropper
       :boxStyle="{
         width: '360px',
         height: '360px',
@@ -30,24 +29,6 @@
       }"
       @ready="ready"
     />
-    <!-- <Cropper
-      ref="cropperPlugin"
-      :boxStyle="{
-        width: '360px',
-        height: '360px',
-        backgroundColor: '#f8f8f8',
-        margin: 'auto'
-      }"
-      :img="pic"
-      :options="{
-        viewMode: 1,
-        dragMode: 'crop',
-        aspectRatio: 16 / 9,
-        preview: preview
-      }"
-      @ready="ready"
-      @crop="crop"
-    /> -->
   </section>
 
   <section class="section">
@@ -67,15 +48,14 @@
 import { computed, defineComponent, onMounted, reactive, ref, nextTick } from 'vue-demi'
 import readFile from 'js-file-reader'
 import Cropper from '@/components/Cropper.vue'
-import tsxCropper, { hey } from '@/components/Cropper.tsx'
+import ImageCropper, { cropper } from '@/components/Cropper.tsx'
 
 export default defineComponent({
   components: {
-    tsxCropper,
+    ImageCropper,
     Cropper
   },
   setup () {
-    const cropperPlugin = ref<any>(null);
     let pic = ref<any>(null);
     const preview = ref<any>(null);
     const result = ref<any>(null);
@@ -91,29 +71,21 @@ export default defineComponent({
      * 裁切结果
      */
     const getResult = (): void => {
-      console.log('cropperPlugin.value', cropperPlugin.value);
-      
-      setTimeout( () => {
-        const move = cropperPlugin.value.move();
-        console.log(move);
-      }, 100);
-      
-
-      // const BASE64_URL = cropper.value.cropper.getCroppedCanvas().toDataURL('image/png');
-
-      // result.value = BASE64_URL;
+      const BASE64_URL = cropper.value.getCroppedCanvas().toDataURL('image/png');
+      result.value = BASE64_URL;
     }
 
     const ready = () => {
       console.log('ready');
-      // cropperPlugin.value.cropper.sayHi();
-      console.log(cropperPlugin.value);
-      // cropperPlugin.value.sayHi()
-      cropperPlugin.value.sayHello()
+      console.log(cropper.value);
+    }
 
-      console.log('home', hey.getCroppedCanvas().toDataURL('image/png'));
-      // result.value = BASE64_URL;
-      
+    const clear = (): void => {
+      cropper.value.clear()
+    }
+
+    const reset = (): void => {
+      cropper.value.reset()
     }
 
 
@@ -123,7 +95,6 @@ export default defineComponent({
 
     return {
       // 数据
-      cropperPlugin,
       pic,
       preview,
       result,
@@ -131,7 +102,9 @@ export default defineComponent({
       // 方法
       getFile,
       getResult,
-      ready
+      ready,
+      clear,
+      reset
     }
   }
 })

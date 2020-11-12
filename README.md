@@ -1,4 +1,4 @@
-# cropper-demo
+# vue-image-cropper
 
 ## Project setup
 ```
