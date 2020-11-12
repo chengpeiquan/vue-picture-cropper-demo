@@ -1,15 +1,20 @@
 <template>
   <section class="section">
     <h2>传照片</h2>
-    <input type="file" @change="getFile" />
+    <input
+      type="file"
+      accept="image/jpg, image/jpeg, image/png, image/gif"
+      @change="getFile"
+    />
     <button @click="reset">重置</button>
     <button @click="clear">清除</button>
+    <button @click="getResult">预览</button>
   </section>
 
   <section class="section">
     <h2>裁剪区</h2>
     <tsxCropper
-      ref="cropper"
+      ref="cropperPlugin"
       :boxStyle="{
         width: '360px',
         height: '360px',
@@ -21,13 +26,12 @@
         viewMode: 1,
         dragMode: 'crop',
         aspectRatio: 16 / 9,
-        preview: preview
+        preview: preview,
       }"
       @ready="ready"
-      @crop="crop"
     />
     <!-- <Cropper
-      ref="cropper"
+      ref="cropperPlugin"
       :boxStyle="{
         width: '360px',
         height: '360px',
@@ -60,10 +64,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref } from 'vue-demi'
+import { computed, defineComponent, onMounted, reactive, ref, nextTick } from 'vue-demi'
 import readFile from 'js-file-reader'
 import Cropper from '@/components/Cropper.vue'
-import tsxCropper from '@/components/Cropper.tsx'
+import tsxCropper, { hey } from '@/components/Cropper.tsx'
 
 export default defineComponent({
   components: {
@@ -71,56 +75,55 @@ export default defineComponent({
     Cropper
   },
   setup () {
-    const cropper = ref<any>(null);
-    const pic = ref<any>(null);
+    const cropperPlugin = ref<any>(null);
+    let pic = ref<any>(null);
     const preview = ref<any>(null);
     const result = ref<any>(null);
     
     const getFile = async (e: any) => {
       const files = [...e.target.files]
       const result = await readFile(files);
-      cropper.value.replace(result[0].base64);
 
-      // 获取转换结果，需要异步
-      setTimeout(() => {
-        getResult();
-      }, 10);
+      pic.value = result[0].base64;
     }
 
     /** 
      * 裁切结果
      */
     const getResult = (): void => {
-      const BASE64_URL = cropper.value.cropper.getCroppedCanvas().toDataURL('image/png');
+      console.log('cropperPlugin.value', cropperPlugin.value);
+      
+      setTimeout( () => {
+        const move = cropperPlugin.value.move();
+        console.log(move);
+      }, 100);
+      
 
-      result.value = BASE64_URL;
+      // const BASE64_URL = cropper.value.cropper.getCroppedCanvas().toDataURL('image/png');
+
+      // result.value = BASE64_URL;
     }
 
     const ready = () => {
-      // cropper.value.cropper.move(50, -100);
-    }
+      console.log('ready');
+      // cropperPlugin.value.cropper.sayHi();
+      console.log(cropperPlugin.value);
+      // cropperPlugin.value.sayHi()
+      cropperPlugin.value.sayHello()
 
-    const replace = (newImage: string) => {
-      cropper.value.replace(newImage);
-    }
-
-    const reset = () => {
-      cropper.value.cropper.reset();
-    }
-
-    const clear = () => {
-      cropper.value.cropper.clear();
-    }
-
-    const crop = (e: any) => {
-      // cropper.value.cropper.crop();
-      // console.log(e);
+      console.log('home', hey.getCroppedCanvas().toDataURL('image/png'));
+      // result.value = BASE64_URL;
       
     }
 
+
+    onMounted( () => {
+      // console.log('cropperPlugin.value', cropperPlugin.value);
+    })
+
     return {
       // 数据
-      cropper,
+      cropperPlugin,
       pic,
       preview,
       result,
@@ -128,11 +131,7 @@ export default defineComponent({
       // 方法
       getFile,
       getResult,
-      ready,
-      replace,
-      reset,
-      clear,
-      crop
+      ready
     }
   }
 })
