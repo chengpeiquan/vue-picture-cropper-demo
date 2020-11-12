@@ -1,0 +1,1 @@
+{"version":3,"file":"vue-image-zoomer.js","sources":["../src/components/template.tsx"],"sourcesContent":["const HL = () => {\r\n  console.log('Hello World!');\r\n}\r\n\r\nexport default HL;"],"names":[],"mappings":";;;;;;;;;;;MAAM,EAAE,GAAG;MACT,OAAO,CAAC,GAAG,CAAC,cAAc,CAAC,CAAC;EAC9B;;;;"}

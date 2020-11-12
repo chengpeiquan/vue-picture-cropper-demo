@@ -1,6 +1,3 @@
-import { createApp } from 'vue-demi'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import VueImageCropper from '@cp/Cropper'
 
-createApp(App).use(store).use(router).mount('#app')
+export default VueImageCropper;
