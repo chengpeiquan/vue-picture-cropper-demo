@@ -1,35 +1,38 @@
 {
-  "compilerOptions": {
-    "target": "ES5",
-    "module": "ES2015",
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@m/*": [
-        "src/modules/*"
-      ],
-      "@cp/*": [
-        "src/components/*"
-      ]
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "strict": true,
+        "declaration": true,
+        "declarationDir": "dist",
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "importHelpers": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "baseUrl": ".",
+        "types": [
+            "node",
+            "vue"
+        ],
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        },
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ],
+        "jsx": "preserve"
     },
-    "declaration": true,
-    "declarationDir": "./dist",
-    "jsx": "preserve"
-  },
-  "include": [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
 }

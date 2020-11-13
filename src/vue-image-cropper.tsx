@@ -4,10 +4,8 @@ import {
   ref,
   nextTick,
   onBeforeUnmount,
-  watch,
-  Plugin,
-  App
-} from 'vue-demi'
+  watch
+} from 'vue'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 
@@ -21,8 +19,8 @@ export const cropper = ref<any>(null);
 /** 
  * 定义组件
  */
-const ImageCropper = defineComponent({
-  name: 'Cropper',
+export default defineComponent({
+  name: 'VueImageCropper',
   props: {
     boxStyle: {
       type: Object,
@@ -91,11 +89,3 @@ const ImageCropper = defineComponent({
     )
   }
 })
-
-
-ImageCropper.install = (app: App) => {
-  app.component(ImageCropper.name, ImageCropper);
-  return app;
-}
-
-export default ImageCropper as any & Plugin
