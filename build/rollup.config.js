@@ -1,16 +1,29 @@
 // rollup.config.js
-import fs from 'fs';
-import path from 'path';
-import vue from 'rollup-plugin-vue';
-import alias from '@rollup/plugin-alias';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
-import replace from '@rollup/plugin-replace';
-import babel from '@rollup/plugin-babel';
-import PostCSS from 'rollup-plugin-postcss';
-import postcssImport from 'postcss-import';
-import { terser } from 'rollup-plugin-terser';
-import minimist from 'minimist';
+import fs from 'fs'
+import path from 'path'
+import vue from 'rollup-plugin-vue'
+import alias from '@rollup/plugin-alias'
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import replace from '@rollup/plugin-replace'
+import babel from '@rollup/plugin-babel'
+import PostCSS from 'rollup-plugin-postcss'
+import postcssImport from 'postcss-import'
+import { terser } from 'rollup-plugin-terser'
+import json from '@rollup/plugin-json'
+import banner2 from 'rollup-plugin-banner2'
+import minimist from 'minimist'
+import pkg from '../package.json'
+
+// 版权信息配置
+const ResolveBanner = () => {
+  return `/** 
+ * name: ${pkg.name}
+ * version: v${pkg.version}
+ * author: ${pkg.author}
+ */
+ `;
+}
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = fs.readFileSync('./.browserslistrc')
@@ -75,7 +88,7 @@ const external = [
   // eg. 'jquery'
   'vue',
   // 'cropperjs',
-  '@vue/composition-api',
+  // '@vue/composition-api',
   // 'cropperjs',
 ];
 
@@ -118,8 +131,17 @@ if (!argv.format || argv.format === 'es') {
         ],
       }),
       commonjs(),
+      json(),
       resolve({
         browser: true
+      }),
+      banner2( ResolveBanner, {
+        sourcemap: true
+      }),
+      terser({
+        output: {
+          ecma: 5,
+        },
       }),
     ],
   };
@@ -145,8 +167,17 @@ if (!argv.format || argv.format === 'cjs') {
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
       commonjs(),
+      json(),
       resolve({
         browser: true
+      }),
+      banner2( ResolveBanner, {
+        sourcemap: true
+      }),
+      terser({
+        output: {
+          ecma: 5,
+        },
       }),
     ],
   };
@@ -172,8 +203,12 @@ if (!argv.format || argv.format === 'iife') {
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
       commonjs(),
+      json(),
       resolve({
         browser: true
+      }),
+      banner2( ResolveBanner, {
+        sourcemap: true
       }),
       terser({
         output: {
