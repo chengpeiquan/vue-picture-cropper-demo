@@ -10,6 +10,7 @@ import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 
 
+
 /** 
  * 暴露一个实例，用于在父级组件操作实例的方法
  */
@@ -19,7 +20,7 @@ export const cropper = ref<any>(null);
 /** 
  * 定义组件
  */
-export default defineComponent({
+const VueImageCropper = defineComponent({
   name: 'VueImageCropper',
   props: {
     boxStyle: {
@@ -43,6 +44,7 @@ export default defineComponent({
     const initCropper = (): void => {
       nextTick( () => {
         cropper.value = new Cropper(cropperImg.value, props.options);
+        VueImageCropper.cropper = cropper.value;
       });
     };
 
@@ -59,8 +61,12 @@ export default defineComponent({
     /** 
      * 执行初始化
      */
-    onMounted( () => {      
+    onMounted( () => {
+      // 初始化
       initCropper();
+
+      // 给实例绑定一个方法
+      // VueImageCropper.cropper = cropper;
     });
 
 
@@ -89,3 +95,5 @@ export default defineComponent({
     )
   }
 })
+
+export default VueImageCropper
