@@ -31,10 +31,15 @@
   <a-modal
     v-model:visible="isShowDialog"
     title="图片裁切"
-    cancelText="取消"
-    okText="裁切"
-    @ok="getResult"
   >
+    <template #footer>
+      <a-button @click="isShowDialog = false">取消</a-button>
+      <a-button @click="clear">清除</a-button>
+      <a-button @click="reset">重置</a-button>
+      <a-button type="primary" @click="getResult">裁切</a-button>
+    </template>
+
+    <!-- 图片裁切插件 -->
     <vue-picture-cropper
       :boxStyle="{
         width: '100%',
@@ -50,6 +55,7 @@
         preview: preview,
       }"
     />
+    <!-- 图片裁切插件 -->
   </a-modal>
   <!-- 用于裁切的弹窗 -->
 
@@ -116,6 +122,20 @@ export default defineComponent({
       isShowDialog.value = false;
     }
 
+    /** 
+     * 清除裁切框
+     */
+    const clear = (): void => {
+      cropper.clear();
+    }
+
+    /** 
+     * 重置默认的裁切区域
+     */
+    const reset = (): void => {
+      cropper.reset();
+    }
+
     return {
       // 数据
       uploadInput,
@@ -126,7 +146,9 @@ export default defineComponent({
 
       // 方法
       selectFile,
-      getResult
+      getResult,
+      clear,
+      reset
     }
   }
 })
