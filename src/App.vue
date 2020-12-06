@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Dialog from '@views/dialog'
+import Dialog from '@views/dialog.vue'
 
 export default defineComponent({
   components: {
