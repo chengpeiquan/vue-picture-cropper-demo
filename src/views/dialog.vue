@@ -65,7 +65,6 @@
 import { defineComponent, ref } from 'vue'
 import { UploadOutlined } from '@ant-design/icons-vue'
 import VuePictureCropper, { cropper } from 'vue-picture-cropper'
-import axios from 'axios'
 
 export default defineComponent({
   components: {
