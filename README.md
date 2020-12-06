@@ -1,9 +1,24 @@
-# vue-image-cropper
+# vue-picture-cropper-demo
 
-一个基于cropper.js，支持Vue 3.0的图片裁切工具
+## Project setup
+```
+npm install
+```
 
-## 功能
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-可以在Vue 3.0里使用的图片裁切工具。
+### Compiles and minifies for production
+```
+npm run build
+```
 
+### Lints and fixes files
+```
+npm run lint
+```
 
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
