@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const webpack = require('webpack');
 const path = require('path');
 const resolve = dir => path.join(__dirname, dir);
+const isDev = process.env.NODE_ENV === 'development' ? true : false;
 
 module.exports = {
-  publicPath: './',
+  publicPath: isDev ? '/' : 'https://cdn.jsdelivr.net/gh/chengpeiquan/vue-picture-cropper-demo@gh-pages/',
   assetsDir: 'static',
   productionSourceMap: false,
   lintOnSave: false,
