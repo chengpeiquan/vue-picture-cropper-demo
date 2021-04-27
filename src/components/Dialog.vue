@@ -30,7 +30,7 @@
   <section class="section" v-if="result">
     <p>裁切后的Base64图片预览：</p>
     <div class="preview" ref="preview">
-      <img :src="result" alt="">
+      <img :src="result" alt="组合式 API">
     </div>
     <p>可以按 F12 查看打印的 base64 / blob 结果</p>
   </section>
@@ -62,7 +62,7 @@
         viewMode: 1,
         dragMode: 'crop',
         aspectRatio: 16 / 9,
-        preview: preview,
+        preview: '.preview',
       }"
     />
     <!-- 图片裁切插件 -->
@@ -82,7 +82,6 @@ export default defineComponent({
   },
   setup () {
     const uploadInput = ref<HTMLInputElement | null>(null);
-    const preview = ref<string>('');
     const pic = ref<string>('');
     const result = ref<string>('');
     const isShowDialog = ref<boolean>(false);
@@ -151,7 +150,6 @@ export default defineComponent({
     return {
       // 数据
       uploadInput,
-      preview,
       pic,
       result,
       isShowDialog,
