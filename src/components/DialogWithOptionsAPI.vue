@@ -1,7 +1,6 @@
 <template>
   <!-- 选择图片 -->
   <section class="section">
-    <h2>这是一个使用 Vue 2.0 选项式 API 语法的组件</h2>
     <p>请先点击按钮选择图片，会进入裁切处理环节</p>
 
     <!-- 设置一个按钮 -->
@@ -21,7 +20,7 @@
       href="https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/components/DialogWithOptionsAPI.vue"
       target="_blank"
     >
-      查看该 DEMO 组件的源码
+      查看 2.0 写法的 DEMO 源码
     </a>
   </section>
   <!-- 选择图片 -->
