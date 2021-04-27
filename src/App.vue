@@ -2,6 +2,8 @@
   <div class="container">
     <Dialog />
 
+    <a-divider />
+
     <DialogWithOptionsAPI />
   </div>
 </template>
