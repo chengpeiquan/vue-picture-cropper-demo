@@ -100,8 +100,6 @@ export default defineComponent({
 
       // 转换为base64传给裁切组件
       const reader: FileReader = new FileReader();
-      console.log(reader);
-      
       reader.readAsDataURL(file);
       reader.onload = (): void => {
         // 更新裁切弹窗的图片源
