@@ -31,6 +31,7 @@
   <a-modal
     v-model:visible="isShowDialog"
     title="图片裁切"
+    :maskClosable="false"
   >
     <template #footer>
       <a-button @click="isShowDialog = false">取消</a-button>
