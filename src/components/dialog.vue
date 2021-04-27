@@ -23,7 +23,7 @@
     <div class="preview" ref="preview">
       <img :src="result" alt="">
     </div>
-    <p>可以按F12查看打印的base64/blob结果</p>
+    <p>可以按 F12 查看打印的 base64 / blob 结果</p>
   </section>
   <!-- 结果预览区 -->
 
@@ -72,32 +72,36 @@ export default defineComponent({
     UploadOutlined
   },
   setup () {
-    let uploadInput = ref<any>(null);
-    let preview = ref<string>('');
-    let pic = ref<string>('');
-    let picType = ref<string>('');
-    let result = ref<string>('');
-    let uploadResult = ref<string>('');
-    let isShowDialog = ref<boolean>(false);
+    const uploadInput = ref<HTMLInputElement | null>(null);
+    const preview = ref<string>('');
+    const pic = ref<string>('');
+    const result = ref<string>('');
+    const isShowDialog = ref<boolean>(false);
 
     /** 
      * 选择图片
      */
-    const selectFile = (e: any): void => {
+    const selectFile = (e: Event): void => {
       // 获取选取的文件
-      const file: any = e.target.files[0];
+      const target = e.target as HTMLInputElement;
+      const { files } = target;
+      if (!files) return;
+      const file: File = files[0];
 
       // 转换为base64传给裁切组件
-      const reader: any = new FileReader();
+      const reader: FileReader = new FileReader();
+      console.log(reader);
+      
       reader.readAsDataURL(file);
       reader.onload = (): void => {
         // 更新裁切弹窗的图片源
-        pic.value = reader.result;
+        pic.value = String(reader.result);
 
         // 显示裁切弹窗
         isShowDialog.value = true;
 
         // 清空已选择的文件
+        if (!uploadInput.value) return;
         uploadInput.value.value = '';
       };
     }
@@ -105,17 +109,17 @@ export default defineComponent({
     /** 
      * 获取裁切结果
      */
-    const getResult = (e: any): void => {
+    const getResult = (): void => {
       // 获取生成的base64图片地址
-      const DATA_URL: string = cropper.getDataURL();
-      console.log('DATA_URL', DATA_URL);
+      const base64: string = cropper.getDataURL();
 
       // 获取生成的blob文件信息
-      const BLOB: any = cropper.getBlob();
-      console.log('BLOB', BLOB);
+      const blob: Blob = cropper.getBlob();
+
+      console.log({base64, blob});
 
       // 把base64赋给结果展示区
-      result.value = DATA_URL;
+      result.value = base64;
 
       // 隐藏裁切弹窗
       isShowDialog.value = false;
