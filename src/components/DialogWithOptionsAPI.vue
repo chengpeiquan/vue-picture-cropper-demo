@@ -62,7 +62,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { UploadOutlined } from '@ant-design/icons-vue'
 import VuePictureCropper, { cropper } from 'vue-picture-cropper'
 
@@ -71,17 +71,19 @@ export default defineComponent({
     VuePictureCropper,
     UploadOutlined
   },
-  setup () {
-    const uploadInput = ref<HTMLInputElement | null>(null);
-    const preview = ref<string>('');
-    const pic = ref<string>('');
-    const result = ref<string>('');
-    const isShowDialog = ref<boolean>(false);
-
+  data() {
+    return {
+      preview: '',
+      pic: '',
+      result: '',
+      isShowDialog: false
+    }
+  },
+  methods: {
     /** 
      * 选择图片
      */
-    const selectFile = (e: Event): void => {
+    selectFile(e: Event): void {
       // 获取选取的文件
       const target = e.target as HTMLInputElement;
       const { files } = target;
@@ -95,21 +97,20 @@ export default defineComponent({
       reader.readAsDataURL(file);
       reader.onload = (): void => {
         // 更新裁切弹窗的图片源
-        pic.value = String(reader.result);
+        this.pic = String(reader.result);
 
         // 显示裁切弹窗
-        isShowDialog.value = true;
+        this.isShowDialog = true;
 
         // 清空已选择的文件
-        if (!uploadInput.value) return;
-        uploadInput.value.value = '';
+        (this.$refs.uploadInput as HTMLInputElement).value = '';
       };
-    }
+    },
 
     /** 
      * 获取裁切结果
      */
-    const getResult = (): void => {
+    getResult(): void {
       // 获取生成的base64图片地址
       const base64: string = cropper.getDataURL();
 
@@ -119,39 +120,24 @@ export default defineComponent({
       console.log({base64, blob});
 
       // 把base64赋给结果展示区
-      result.value = base64;
+      this.result = base64;
 
       // 隐藏裁切弹窗
-      isShowDialog.value = false;
-    }
+      this.isShowDialog = false;
+    },
 
     /** 
      * 清除裁切框
      */
-    const clear = (): void => {
+    clear(): void {
       cropper.clear();
-    }
+    },
 
     /** 
      * 重置默认的裁切区域
      */
-    const reset = (): void => {
+    reset(): void {
       cropper.reset();
-    }
-
-    return {
-      // 数据
-      uploadInput,
-      preview,
-      pic,
-      result,
-      isShowDialog,
-
-      // 方法
-      selectFile,
-      getResult,
-      clear,
-      reset
     }
   }
 })

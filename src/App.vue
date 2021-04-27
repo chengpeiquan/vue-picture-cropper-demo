@@ -1,16 +1,20 @@
 <template>
   <div class="container">
     <Dialog />
+
+    <DialogWithOptionsAPI />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Dialog from '@/components/Dialog.vue'
+import DialogWithOptionsAPI from '@/components/DialogWithOptionsAPI.vue'
 
 export default defineComponent({
   components: {
-    Dialog
+    Dialog,
+    DialogWithOptionsAPI
   }
 })
 </script>
