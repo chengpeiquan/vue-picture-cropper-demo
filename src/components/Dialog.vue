@@ -1,7 +1,9 @@
 <template>
   <!-- 选择图片 -->
   <section class="section">
+    <h2>这是一个使用 Vue 3.0 组合式 API 语法的组件</h2>
     <p>请先点击按钮选择图片，会进入裁切处理环节</p>
+
     <!-- 设置一个按钮 -->
     <a-button class="select-picture">
       <template #icon><UploadOutlined /></template>
@@ -14,6 +16,13 @@
       >
     </a-button>
     <!-- 设置一个按钮 -->
+
+    <a
+      href="https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/components/Dialog.vue"
+      target="_blank"
+    >
+      查看该 DEMO 组件的源码
+    </a>
   </section>
   <!-- 选择图片 -->
 
@@ -170,6 +179,7 @@ export default defineComponent({
   // 选图按钮
   .select-picture
     position relative
+    margin-bottom 1em
     input
       position absolute
       top 0
