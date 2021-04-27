@@ -1,7 +1,6 @@
 <template>
   <!-- 选择图片 -->
   <section class="section">
-    <h2>这是一个使用 Vue 3.0 组合式 API 语法的组件</h2>
     <p>请先点击按钮选择图片，会进入裁切处理环节</p>
 
     <!-- 设置一个按钮 -->
@@ -21,7 +20,7 @@
       href="https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/components/Dialog.vue"
       target="_blank"
     >
-      查看该 DEMO 组件的源码
+      查看 3.0 写法的 DEMO 源码
     </a>
   </section>
   <!-- 选择图片 -->
@@ -80,7 +79,7 @@ export default defineComponent({
     VuePictureCropper,
     UploadOutlined
   },
-  setup () {
+  setup() {
     const uploadInput = ref<HTMLInputElement | null>(null);
     const pic = ref<string>('');
     const result = ref<string>('');
@@ -98,8 +97,6 @@ export default defineComponent({
 
       // 转换为base64传给裁切组件
       const reader: FileReader = new FileReader();
-      console.log(reader);
-      
       reader.readAsDataURL(file);
       reader.onload = (): void => {
         // 更新裁切弹窗的图片源
