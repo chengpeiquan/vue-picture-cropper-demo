@@ -89,6 +89,9 @@ export default defineComponent({
      * 选择图片
      */
     const selectFile = (e: Event): void => {
+      // 重置上一次的结果
+      result.value = ''
+
       // 获取选取的文件
       const target = e.target as HTMLInputElement;
       const { files } = target;
