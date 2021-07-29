@@ -12,6 +12,7 @@
     "ant-design-vue": "^2.0.0-rc.1",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
+    "vue-picture-cropper": "^0.1.11",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
@@ -28,7 +29,6 @@
     "eslint-plugin-vue": "^7.0.0-0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "typescript": "~3.9.3",
-    "vue-picture-cropper": "^0.1.7"
+    "typescript": "~3.9.3"
   }
 }

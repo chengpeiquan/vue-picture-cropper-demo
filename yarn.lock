@@ -3045,10 +3045,10 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cropperjs@^1.5.9:
-  version "1.5.11"
-  resolved "https://registry.yarnpkg.com/cropperjs/-/cropperjs-1.5.11.tgz#502ae6d8ca098b124de6813601cca70015879fc0"
-  integrity sha512-SJUeBBhtNBnnn+UrLKluhFRIXLJn7XFPv8QN1j49X5t+BIMwkgvDev541f96bmu8Xe0TgCx3gON22KmY/VddaA==
+cropperjs@^1.5.12:
+  version "1.5.12"
+  resolved "https://registry.yarnpkg.com/cropperjs/-/cropperjs-1.5.12.tgz#d9c0db2bfb8c0d769d51739e8f916bbc44e10f50"
+  integrity sha512-re7UdjE5UnwdrovyhNzZ6gathI4Rs3KGCBSc8HCIjUo5hO42CtzyblmWLj6QWVw7huHyDMfpKxhiO2II77nhDw==
 
 cross-spawn@^5.0.1:
   version "5.1.0"
@@ -8852,12 +8852,12 @@ vue-loader@^15.9.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-picture-cropper@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/vue-picture-cropper/-/vue-picture-cropper-0.1.7.tgz#85f06f88eec97ac769be9efddd32d7eb001147b5"
-  integrity sha512-Uj/CvgIEb6xd+dDe3+EQXylDvXNTUUz0f7gVAT1JDQDLcn32cPeUc0PLVgz0ee5fCE/Lwb7cbSc5ixLgVUmdGA==
+vue-picture-cropper@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/vue-picture-cropper/-/vue-picture-cropper-0.1.11.tgz#46aac47315c262216e64153cfa66de64af0ad645"
+  integrity sha512-jYQ0yxiErBlXuYXEYTjrGupDO7f5N9Iloou9jZq0bLP8PagmVrhKkWD5BKd8PkyLZTiaoh721FV7csJNQpi2vQ==
   dependencies:
-    cropperjs "^1.5.9"
+    cropperjs "^1.5.12"
 
 vue-router@^4.0.0-0:
   version "4.0.6"
