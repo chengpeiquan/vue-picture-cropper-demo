@@ -17,26 +17,26 @@ import DialogWithOptionsAPI from '@/components/DialogWithOptionsAPI.vue'
 export default defineComponent({
   components: {
     Dialog,
-    DialogWithOptionsAPI
+    DialogWithOptionsAPI,
   },
   setup() {
-    const curComponent = ref<string>('Dialog');
-    const curSyntax = ref<string>('Vue 3.0 组合式 API');
-    const anotherSyntax = ref<string>('2.0');
+    const curComponent = ref<string>('Dialog')
+    const curSyntax = ref<string>('Vue 3.0 组合式 API')
+    const anotherSyntax = ref<string>('2.0')
 
     const switchComponent = (): void => {
       switch (curComponent.value) {
         case 'Dialog':
-          curComponent.value = 'DialogWithOptionsAPI';
-          curSyntax.value = 'Vue 2.0 选项式 API';
-          anotherSyntax.value = '2.0';
-          break;
+          curComponent.value = 'DialogWithOptionsAPI'
+          curSyntax.value = 'Vue 2.0 选项式 API'
+          anotherSyntax.value = '2.0'
+          break
 
         case 'DialogWithOptionsAPI':
-          curComponent.value = 'Dialog';
-          curSyntax.value = 'Vue 3.0 组合式 API';
-          anotherSyntax.value = '3.0';
-          break;
+          curComponent.value = 'Dialog'
+          curSyntax.value = 'Vue 3.0 组合式 API'
+          anotherSyntax.value = '3.0'
+          break
       }
     }
 
@@ -47,22 +47,25 @@ export default defineComponent({
       anotherSyntax,
 
       // 方法
-      switchComponent
+      switchComponent,
     }
-  }
+  },
 })
 </script>
 
-<style lang="stylus" scoped>
-.container
-  padding 40px
-  .title
-    display flex
-    justify-content center
-    align-items center
-    margin-bottom 1em
-    h2
-      font-size 20px
-      margin-bottom 0
-      margin-right .5em
+<style lang="less" scoped>
+.container {
+  padding: 40px;
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+    h2 {
+      font-size: 20px;
+      margin-bottom: 0;
+      margin-right: .5em;
+    }
+  }
+}
 </style>

@@ -20,25 +20,18 @@ module.exports = {
     //   }
     // }
   },
-  // css: {
-  //   loaderOptions: {
-  //     // css: {
-  //     // // options here will be passed to css-loader
-  //     // },
-  //     postcss: {
-  //       // options here will be passed to postcss-loader
-  //       plugins: [
-  //         require('postcss-px2rem')({
-  //           remUnit: 75
-  //         })
-  //         // require('postcss-px-to-viewport')({
-  //         //   viewportWidth: 750,
-  //         //   minPixelValue: 1
-  //         // })
-  //       ]
-  //     }
-  //   }
-  // },
+  css: {
+    loaderOptions: {
+      less: {
+        lessOptions: {
+          javascriptEnabled: true,
+          // modifyVars: {
+          //   hack: `true; @import '~@less/config.less'`,
+          // },
+        },
+      },
+    },
+  },
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src'))
