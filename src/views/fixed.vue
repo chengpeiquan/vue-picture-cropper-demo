@@ -1,6 +1,17 @@
 <template>
   <!-- 选择图片 -->
   <section class="section">
+    <div class="desc">
+      <p>固定尺寸模式：裁切区域尺寸固定，裁切结果和裁切区域大小保持一致</p>
+
+      <a
+        href="https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/views/fixed.vue"
+        target="_blank"
+      >
+        <span>查看本 DEMO 源码</span>
+      </a>
+    </div>
+
     <p>请先点击按钮选择图片，会进入裁切处理环节</p>
 
     <!-- 设置一个按钮 -->
@@ -15,21 +26,14 @@
       />
     </Button>
     <!-- 设置一个按钮 -->
-
-    <a
-      href="https://github.com/chengpeiquan/vue-picture-cropper-demo/blob/main/src/components/DialogWithOptionsAPI.vue"
-      target="_blank"
-    >
-      查看 2.0 写法的 DEMO 源码
-    </a>
   </section>
   <!-- 选择图片 -->
 
   <!-- 结果预览区 -->
   <section class="section" v-if="result.dataURL && result.blobURL">
-    <p>裁切后的Base64图片预览：</p>
+    <p>裁切后的 Base64 图片预览：</p>
     <div class="preview">
-      <img :src="result.dataURL" alt="选项式 API" />
+      <img :src="result.dataURL" alt="组合式 API" />
     </div>
     <p>裁切后的 Blob 图片预览：</p>
     <div class="preview">
@@ -40,11 +44,7 @@
   <!-- 结果预览区 -->
 
   <!-- 用于裁切的弹窗 -->
-  <Modal
-    v-model:visible="isShowDialog"
-    title="图片裁切"
-    :maskClosable="false"
-  >
+  <Modal v-model:visible="isShowDialog" title="图片裁切" :maskClosable="false">
     <template #footer>
       <Button @click="isShowDialog = false">取消</Button>
       <Button @click="clear">清除</Button>
@@ -63,8 +63,14 @@
       :img="pic"
       :options="{
         viewMode: 1,
-        dragMode: 'crop',
-        aspectRatio: 16 / 9,
+        dragMode: 'move',
+        aspectRatio: 1,
+        cropBoxResizable: false,
+      }"
+      :presetMode="{
+        mode: 'fixedSize',
+        width: 50,
+        height: 50,
       }"
     />
     <!-- 图片裁切插件 -->
@@ -73,10 +79,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
 import { Button, Modal } from 'ant-design-vue'
 import { UploadOutlined } from '@ant-design/icons-vue'
 import VuePictureCropper, { cropper } from 'vue-picture-cropper'
+
+interface Result {
+  dataURL: string
+  blobURL: string
+}
 
 export default defineComponent({
   components: {
@@ -85,24 +96,22 @@ export default defineComponent({
     VuePictureCropper,
     UploadOutlined,
   },
-  data() {
-    return {
-      pic: '',
-      result: {
-        dataURL: '',
-        blobURL: '',
-      },
-      isShowDialog: false,
-    }
-  },
-  methods: {
+  setup() {
+    const uploadInput = ref<HTMLInputElement | null>(null)
+    const pic = ref<string>('')
+    const result: Result = reactive({
+      dataURL: '',
+      blobURL: '',
+    })
+    const isShowDialog = ref<boolean>(false)
+
     /**
      * 选择图片
      */
-    selectFile(e: Event): void {
+    const selectFile = (e: Event): void => {
       // 重置上一次的结果
-      this.result.dataURL = ''
-      this.result.blobURL = ''
+      result.dataURL = ''
+      result.blobURL = ''
 
       // 获取选取的文件
       const target = e.target as HTMLInputElement
@@ -115,20 +124,21 @@ export default defineComponent({
       reader.readAsDataURL(file)
       reader.onload = (): void => {
         // 更新裁切弹窗的图片源
-        this.pic = String(reader.result)
+        pic.value = String(reader.result)
 
         // 显示裁切弹窗
-        this.isShowDialog = true
+        isShowDialog.value = true
 
         // 清空已选择的文件
-        ;(this.$refs.uploadInput as HTMLInputElement).value = ''
+        if (!uploadInput.value) return
+        uploadInput.value.value = ''
       }
-    },
+    }
 
     /**
      * 获取裁切结果
      */
-    async getResult(): Promise<void> {
+    const getResult = async (): Promise<void> => {
       // 获取生成的base64图片地址
       const base64: string = cropper.getDataURL()
 
@@ -143,67 +153,46 @@ export default defineComponent({
       console.log({ base64, blob, file })
 
       // 把base64赋给结果展示区
-      this.result.dataURL = base64
-      this.result.blobURL = URL.createObjectURL(blob)
+      result.dataURL = base64
+      try {
+        result.blobURL = URL.createObjectURL(blob)
+      } catch (e) {
+        result.blobURL = ''
+      }
 
       // 隐藏裁切弹窗
-      this.isShowDialog = false
-    },
+      isShowDialog.value = false
+    }
 
     /**
      * 清除裁切框
      */
-    clear(): void {
+    const clear = (): void => {
       cropper.clear()
-    },
+    }
 
     /**
      * 重置默认的裁切区域
      */
-    reset(): void {
+    const reset = (): void => {
       cropper.reset()
-    },
+    }
+
+    return {
+      // 数据
+      uploadInput,
+      pic,
+      result,
+      isShowDialog,
+
+      // 方法
+      selectFile,
+      getResult,
+      clear,
+      reset,
+    }
   },
 })
 </script>
 
-<style lang="less" scoped>
-.section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto 40px;
-  &:last-child {
-    margin-bottom: 0;
-  }
-  // 选图按钮
-  .select-picture {
-    position: relative;
-    margin-bottom: 1em;
-    input {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-    }
-  }
-  // 预览区
-  .preview {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 1em;
-    img {
-      width: auto;
-      height: auto;
-      max-width: 100%;
-      max-height: 100%;
-    }
-  }
-}
-</style>
+<style scoped></style>

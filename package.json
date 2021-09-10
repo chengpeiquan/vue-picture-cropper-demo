@@ -1,18 +1,21 @@
 {
   "name": "vue-picture-cropper-demo",
   "version": "0.1.0",
+  "author": "chengpeiquan",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "prettier": "prettier --write src"
+    "prettier": "prettier --write src",
+    "git": "git add . && git commit -m \"chore: save the coding progress\" && git push"
   },
   "dependencies": {
     "ant-design-vue": "^2.2.7",
     "core-js": "^3.6.5",
     "vue": "^3.2.11",
-    "vue-picture-cropper": "^0.3.0"
+    "vue-picture-cropper": "^0.3.0",
+    "vue-router": "^4.0.11"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.18.0",
