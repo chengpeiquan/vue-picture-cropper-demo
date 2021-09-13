@@ -11,7 +11,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/composition',
     name: 'composition',
-    component: () => import(/* webpackChunkName: "home" */ '@views/composition.vue'),
+    component: () =>
+      import(/* webpackChunkName: "home" */ '@views/composition.vue'),
     meta: {
       title: '组合式 API 写法',
     },
@@ -19,17 +20,27 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/options',
     name: 'options',
-    component: () => import(/* webpackChunkName: "options" */ '@views/options.vue'),
+    component: () =>
+      import(/* webpackChunkName: "options" */ '@views/options.vue'),
     meta: {
       title: '选项式 API 写法',
     },
   },
   {
-    path: '/fixed',
-    name: 'fixed',
-    component: () => import(/* webpackChunkName: "fixed" */ '@views/fixed.vue'),
+    path: '/fixedSize',
+    name: 'fixedSize',
+    component: () =>
+      import(/* webpackChunkName: "fixedSize" */ '@/views/fixedSize.vue'),
     meta: {
       title: '固定尺寸模式',
+    },
+  },
+  {
+    path: '/round',
+    name: 'round',
+    component: () => import(/* webpackChunkName: "round" */ '@views/round.vue'),
+    meta: {
+      title: '圆形模式',
     },
   },
 ]

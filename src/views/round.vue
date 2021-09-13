@@ -47,8 +47,6 @@
   <Modal v-model:visible="isShowDialog" title="图片裁切" :maskClosable="false">
     <template #footer>
       <Button @click="isShowDialog = false">取消</Button>
-      <Button @click="clear">清除</Button>
-      <Button @click="reset">重置</Button>
       <Button type="primary" @click="getResult">裁切</Button>
     </template>
 
@@ -68,9 +66,9 @@
         cropBoxResizable: false,
       }"
       :presetMode="{
-        mode: 'fixedSize',
-        width: 50,
-        height: 50,
+        mode: 'round',
+        width: 100,
+        height: 100,
       }"
     />
     <!-- 图片裁切插件 -->
@@ -164,20 +162,6 @@ export default defineComponent({
       isShowDialog.value = false
     }
 
-    /**
-     * 清除裁切框
-     */
-    const clear = (): void => {
-      cropper.clear()
-    }
-
-    /**
-     * 重置默认的裁切区域
-     */
-    const reset = (): void => {
-      cropper.reset()
-    }
-
     return {
       // 数据
       uploadInput,
@@ -188,8 +172,6 @@ export default defineComponent({
       // 方法
       selectFile,
       getResult,
-      clear,
-      reset,
     }
   },
 })
