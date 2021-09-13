@@ -21,14 +21,8 @@
       "@img/*": [
         "src/assets/img/*"
       ],
-      "@styl/*": [
-        "src/assets/styl/*"
-      ],
-      "@js/*": [
-        "src/assets/js/*"
-      ],
-      "@ts/*": [
-        "src/assets/ts/*"
+      "@less/*": [
+        "src/assets/less/*"
       ],
       "@fonts/*": [
         "src/assets/fonts/*"

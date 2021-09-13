@@ -1603,6 +1603,11 @@
   optionalDependencies:
     prettier "^1.18.2"
 
+"@vue/devtools-api@^6.0.0-beta.14":
+  version "6.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.0.0-beta.15.tgz#ad7cb384e062f165bcf9c83732125bffbc2ad83d"
+  integrity sha512-quBx4Jjpexo6KDiNUGFr/zF/2A4srKM9S9v2uHgMXSU//hjgq1eGzqkIFql8T9gfX5ZaVOUzYBP3jIdIR3PKIA==
+
 "@vue/eslint-config-prettier@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@vue/eslint-config-prettier/-/eslint-config-prettier-6.0.0.tgz#ad5912b308f4ae468458e02a2b05db0b9d246700"
@@ -9037,6 +9042,11 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
+vue-baidu-analytics@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/vue-baidu-analytics/-/vue-baidu-analytics-2.2.0.tgz#6ba141ab1e36d26e2c23adea610ee401d830698c"
+  integrity sha512-15LH20JRABiusqas4mFkFLq+eJdQXoiyzSZOdSGfbsHKXEzAcUUEPRIc3Tj8g7yc20HdBlxt5yH46ftn2EIC9g==
+
 vue-eslint-parser@^7.0.0:
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.6.0.tgz#01ea1a2932f581ff244336565d712801f8f72561"
@@ -9087,12 +9097,19 @@ vue-loader@^15.9.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-picture-cropper@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/vue-picture-cropper/-/vue-picture-cropper-0.3.0.tgz#d4d83d5e6ab6e198389f8ae60642d44ccfe2419f"
-  integrity sha512-BgESCi3+JvJK0sdzo7vnhhFN1piRBsGuUGLs07Uobaf8wMccU66vXkip4csU25C0Kv4qBn7XlLjTzX+WhQxjzw==
+vue-picture-cropper@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/vue-picture-cropper/-/vue-picture-cropper-0.4.0.tgz#3945319f001955a6f0552e58ddc1defaec9e40b2"
+  integrity sha512-ybuJQ4uPUebdqNqbfBLDseqG0ayoEqmrrlXNiZ0MoATVVrYu6ZD9Nw0U6oC6W5jvCRFgbgafqMAEAdx5k0z8uw==
   dependencies:
     cropperjs "^1.5.12"
+
+vue-router@^4.0.11:
+  version "4.0.11"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.11.tgz#cd649a0941c635281763a20965b599643ddc68ed"
+  integrity sha512-sha6I8fx9HWtvTrFZfxZkiQQBpqSeT+UCwauYjkdOQYRvwsGwimlQQE2ayqUwuuXGzquFpCPoXzYKWlzL4OuXg==
+  dependencies:
+    "@vue/devtools-api" "^6.0.0-beta.14"
 
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
   version "4.1.3"
