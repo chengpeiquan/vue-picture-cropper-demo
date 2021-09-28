@@ -43,6 +43,15 @@ const routes: Array<RouteRecordRaw> = [
       title: '圆形模式',
     },
   },
+  {
+    path: '/multiple',
+    name: 'multiple',
+    component: () =>
+      import(/* webpackChunkName: "multiple" */ '@views/multiple.vue'),
+    meta: {
+      title: '多个裁剪框',
+    },
+  },
 ]
 
 export default routes

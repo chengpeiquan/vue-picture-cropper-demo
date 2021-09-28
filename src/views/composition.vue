@@ -54,6 +54,7 @@
 
     <!-- 图片裁切插件 -->
     <VuePictureCropper
+      :imgId="imgId"
       :boxStyle="{
         width: '100%',
         height: '100%',
@@ -76,7 +77,7 @@
 import { defineComponent, reactive, ref } from 'vue'
 import { Button, Modal } from 'ant-design-vue'
 import { UploadOutlined } from '@ant-design/icons-vue'
-import VuePictureCropper, { cropper } from 'vue-picture-cropper'
+import VuePictureCropper, { cropper, croppers } from 'vue-picture-cropper'
 
 interface Result {
   dataURL: string
@@ -89,6 +90,11 @@ export default defineComponent({
     Modal,
     VuePictureCropper,
     UploadOutlined,
+  },
+  // 这个prop是配合多个裁剪框演示的，单独使用无需指定
+  // 详见 https://github.com/chengpeiquan/vue-picture-cropper/issues/16
+  props: {
+    imgId: String,
   },
   setup() {
     const uploadInput = ref<HTMLInputElement | null>(null)
@@ -133,6 +139,8 @@ export default defineComponent({
      * 获取裁切结果
      */
     const getResult = async (): Promise<void> => {
+      console.log(cropper)
+
       // 获取生成的base64图片地址
       const base64: string = cropper.getDataURL()
 
