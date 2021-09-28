@@ -112,6 +112,7 @@ export default defineComponent({
       // 重置上一次的结果
       result.dataURL = ''
       result.blobURL = ''
+      pic.value = ''
 
       // 获取选取的文件
       const target = e.target as HTMLInputElement
@@ -139,7 +140,7 @@ export default defineComponent({
      * 获取裁切结果
      */
     const getResult = async (): Promise<void> => {
-      console.log(cropper)
+      // console.log(cropper)
 
       // 获取生成的base64图片地址
       const base64: string = cropper.getDataURL()
