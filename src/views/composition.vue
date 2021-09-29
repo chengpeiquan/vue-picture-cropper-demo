@@ -54,7 +54,6 @@
 
     <!-- 图片裁切插件 -->
     <VuePictureCropper
-      :imgId="imgId"
       :boxStyle="{
         width: '100%',
         height: '100%',
@@ -91,11 +90,6 @@ export default defineComponent({
     VuePictureCropper,
     UploadOutlined,
   },
-  // 这个prop是配合多个裁剪框演示的，单独使用无需指定
-  // 详见 https://github.com/chengpeiquan/vue-picture-cropper/issues/16
-  props: {
-    imgId: String,
-  },
   setup() {
     const uploadInput = ref<HTMLInputElement | null>(null)
     const pic = ref<string>('')
@@ -112,6 +106,8 @@ export default defineComponent({
       // 重置上一次的结果
       result.dataURL = ''
       result.blobURL = ''
+
+      // 如果有多个裁剪框，也需要重置掉裁剪目标的值，避免使用同一张图片无法触发watch
       pic.value = ''
 
       // 获取选取的文件
