@@ -107,6 +107,9 @@ export default defineComponent({
       this.result.dataURL = ''
       this.result.blobURL = ''
 
+      // 如果有多个裁剪框，也需要重置掉裁剪目标的值，避免使用同一张图片无法触发watch
+      this.pic = ''
+
       // 获取选取的文件
       const target = e.target as HTMLInputElement
       const { files } = target
