@@ -76,7 +76,7 @@
 import { defineComponent, reactive, ref } from 'vue'
 import { Button, Modal } from 'ant-design-vue'
 import { UploadOutlined } from '@ant-design/icons-vue'
-import VuePictureCropper, { cropper } from 'vue-picture-cropper'
+import VuePictureCropper, { cropper, croppers } from 'vue-picture-cropper'
 
 interface Result {
   dataURL: string
@@ -107,6 +107,9 @@ export default defineComponent({
       result.dataURL = ''
       result.blobURL = ''
 
+      // 如果有多个裁剪框，也需要重置掉裁剪目标的值，避免使用同一张图片无法触发watch
+      pic.value = ''
+
       // 获取选取的文件
       const target = e.target as HTMLInputElement
       const { files } = target
@@ -133,6 +136,8 @@ export default defineComponent({
      * 获取裁切结果
      */
     const getResult = async (): Promise<void> => {
+      // console.log(cropper)
+
       // 获取生成的base64图片地址
       const base64: string = cropper.getDataURL()
 

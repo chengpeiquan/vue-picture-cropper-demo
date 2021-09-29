@@ -9097,10 +9097,10 @@ vue-loader@^15.9.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-picture-cropper@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/vue-picture-cropper/-/vue-picture-cropper-0.4.0.tgz#3945319f001955a6f0552e58ddc1defaec9e40b2"
-  integrity sha512-ybuJQ4uPUebdqNqbfBLDseqG0ayoEqmrrlXNiZ0MoATVVrYu6ZD9Nw0U6oC6W5jvCRFgbgafqMAEAdx5k0z8uw==
+vue-picture-cropper@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/vue-picture-cropper/-/vue-picture-cropper-0.5.0.tgz#bf34be146a874eab1c211ebbeb9f2f744b49ebf5"
+  integrity sha512-c1ZkSj5Uz1qo9TvpW1qVtFLrGkVeFR2t79Vx8lYWqvpn1vNjlhh+URuhNOhQUTYWxDD6Wk0Cr4qXhFwVOzJX4A==
   dependencies:
     cropperjs "^1.5.12"
 
