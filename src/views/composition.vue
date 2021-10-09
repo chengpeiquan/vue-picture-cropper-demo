@@ -76,7 +76,7 @@
 import { defineComponent, reactive, ref } from 'vue'
 import { Button, Modal } from 'ant-design-vue'
 import { UploadOutlined } from '@ant-design/icons-vue'
-import VuePictureCropper, { cropper, croppers } from 'vue-picture-cropper'
+import VuePictureCropper, { cropper } from 'vue-picture-cropper'
 
 interface Result {
   dataURL: string
