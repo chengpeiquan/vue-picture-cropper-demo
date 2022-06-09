@@ -17,11 +17,9 @@ import Header from '@cp/Header.vue'
 import Navigation from '@cp/Navigation.vue'
 
 const route = useRoute()
-const key = computed(() => {
-  return route.name
-    ? String(route.name) + new Date()
-    : String(route.path) + new Date()
-})
+const key = computed(() =>
+  route.name ? String(route.name) + new Date() : String(route.path) + new Date()
+)
 </script>
 
 <style lang="less" scoped>

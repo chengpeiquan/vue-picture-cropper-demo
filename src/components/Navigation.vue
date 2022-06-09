@@ -8,14 +8,14 @@
         :to="item.path"
         exact
       >
-        {{ item.meta.title }}
+        {{ item.meta?.title }}
       </router-link>
     </nav>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from '@vue/reactivity'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

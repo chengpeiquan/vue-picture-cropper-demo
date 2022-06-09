@@ -1,19 +1,20 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "useDefineForClassFields": true,
     "module": "esnext",
+    "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "types": [
-      "webpack-env"
+      "node"
     ],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "skipLibCheck": true,
     "paths": {
       "@/*": [
         "src/*"
@@ -24,11 +25,11 @@
       "@less/*": [
         "src/assets/less/*"
       ],
-      "@fonts/*": [
-        "src/assets/fonts/*"
-      ],
       "@css/*": [
         "src/assets/css/*"
+      ],
+      "@fonts/*": [
+        "src/assets/fonts/*"
       ],
       "@libs/*": [
         "src/libs/*"
@@ -43,21 +44,12 @@
         "src/plugins/*"
       ]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable"]
   },
   "include": [
     "src/**/*.ts",
+    "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
+    "src/**/*.vue"
   ]
 }
