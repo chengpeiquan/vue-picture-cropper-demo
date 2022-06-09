@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
 import baiduAnalytics from 'vue-baidu-analytics'
+import App from '@/App.vue'
+import router from '@/router'
+
+// 全局样式
 import '@less/global.less'
 
 createApp(App)
