@@ -8,12 +8,12 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "prettier": "prettier --write src",
-    "git": "git add . && git commit -m \"chore: save the coding progress\" && git push"
+    "git": "git add . && git commit -m \"chore: backup\" && git push"
   },
   "dependencies": {
     "ant-design-vue": "^2.2.7",
     "core-js": "^3.6.5",
-    "vue": "^3.2.11",
+    "vue": "^3.2.36",
     "vue-baidu-analytics": "^2.2.0",
     "vue-picture-cropper": "^0.5.1",
     "vue-router": "^4.0.11"
@@ -26,7 +26,7 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.2.11",
+    "@vue/compiler-sfc": "^3.2.36",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "babel-plugin-import": "^1.13.3",
