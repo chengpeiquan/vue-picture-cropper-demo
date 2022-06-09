@@ -5,9 +5,7 @@ const resolve = (dir) => path.join(__dirname, dir)
 const isDev = process.env.NODE_ENV === 'development' ? true : false
 
 module.exports = {
-  publicPath: isDev
-    ? '/'
-    : 'https://cdn.jsdelivr.net/gh/chengpeiquan/vue-picture-cropper-demo@gh-pages/',
+  publicPath: isDev ? '/' : /vue-picture-cropper-demo/,
   assetsDir: 'static',
   productionSourceMap: false,
   lintOnSave: false,
