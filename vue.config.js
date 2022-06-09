@@ -2,10 +2,9 @@
 const webpack = require('webpack')
 const path = require('path')
 const resolve = (dir) => path.join(__dirname, dir)
-const isDev = process.env.NODE_ENV === 'development' ? true : false
 
 module.exports = {
-  publicPath: isDev ? '/' : /vue-picture-cropper-demo/,
+  publicPath: /vue-picture-cropper-demo/,
   assetsDir: 'static',
   productionSourceMap: false,
   lintOnSave: false,
